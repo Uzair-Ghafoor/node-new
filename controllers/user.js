@@ -2,6 +2,7 @@ import User from '../models/user.js';
 import bctyptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { Query } from 'mongoose';
 dotenv.config();
 export const Signup = async (req, res) => {
   try {
@@ -64,9 +65,15 @@ export const Signin = async (req, res) => {
   }
 };
 
-const signin = async () => {
+export const getMe = async (req, res) => {
   try {
-    const id = req.user.id;
-    const user = await User.findById(req.user.id);
+    console.log(req.user);
+    const me = await User.findById(req.user._id);
+    console.log(me);
+    res.status(200).json(me);
   } catch (error) {}
 };
+
+// const signin = async () => {
+//   const user = await User.findById(req.user.id);
+// };

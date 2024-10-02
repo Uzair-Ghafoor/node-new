@@ -2,10 +2,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 //instances
 const app = express();
 dotenv.config();
 app.use(express.json());
+app.use(cookieParser());
 //routes
 import userRouter from './routes/user.js';
 import { ConnectDB } from './db.js';
